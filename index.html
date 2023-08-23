@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <title>Bee Urban Kartan</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .marker {
+        background-image: url('Blomma_Rosa.png');
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+}
+        .mapboxgl-popup {
+          width: 800px;
+}
+        .mapboxgl-popup-content {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        width: 300px;
+        border: 2px solid #ea5097;
+        border-radius: 4px;
+        padding: 10px;
+}
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoibWFydGluamFubWFuc3NvbiIsImEiOiJjbGxrd2ZlNjQxejRkM2NxamNyNGI3cmczIn0.AjeX5HY5Rh0c2lquYjuTEg';
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/martinjanmansson/clllhsn0y006301o1hmd19z72',
+  center: [18.05, 59.33],
+  zoom: 11
+
+});
+
+// code from the next step will go here!
+
+const geojson = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.058321989964497,59.33378201102144]
+      },
+      properties: {
+        title: 'Pollinering på Klara Norra Kyrkogata 23',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211104/q%3D50_h%3D450_of%3D1/v2?sig=e994f229f62a7446001837a0acc8a9076cf04b545ed93e08d15ec18732ebbe4d',
+        developer: 'Beställare: AxFast AB',
+        executor: 'Utförare: Bee Urban AB',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Här kommer inom kort en beskrivning av projektet'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.067386077254298,59.33547574507298]
+      },
+      properties: {
+        title: 'Biologisk Mångfald på Regeringsgatan 67',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211114/q%3D50_h%3D450_of%3D1/v2?sig=e9a39a1349365e622d33840840fc16acee4b7de99834fc96467c57b36e2d1ea0',
+        developer: 'Beställare: Vasakronan AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Vasakronan gav Bee Urban under våren 2017 i uppdrag att inreda en av deras terrasser till en lummig och vacker oas. Bee Urban har platsbyggt lådor med spaljéer och pergola samt anlagt rabatterna med tåliga men pollen-och nektarrika perenner och sommarblommor. En mesholk och en tornseglarholk sattes också upp. Terassen har varit välbesökt under hela säsongen av såväl hyresgäster som pollinatörer!'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.059411123770957,59.3318848979726]
+      },
+      properties: {
+        title: 'Habitat på Mäster Samuelsgatan 69',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211106/q%3D50_h%3D450_of%3D1/v2?sig=15aab78c1b36a1261e02e4982fd31a25d14e2ca179b4967e9198312438dd8944',
+        developer: 'Beställare: Huvudstaden AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Här på takträdgården i kvarteret Orgelpipan finns det en plan på att inom de närmaste åren ta ett helhetsgrepp och anlägga nytt. Tills dess vill vi med så små medel som möjligt ändå ge platsen ett lyft för att skapa trivsel för både människor och djur. Här finns idag stora, ganska artfattiga planteringar med träd och buskar som vi har väckt till liv. Vi har beskurit och föryngrat dessa eftersom de under åren blivit risiga och förvuxna, men också för att ge platsen ett mer vårdat intryck. Planteringskärlen har fått nya tåliga växter som blommar och förser pollinatörer med nektar och pollen. Vi har installerat två fågelholkar i träden som ger de en trygg och skyddad plats att häcka i stadsmiljön. Eftersom naturliga häckningsplatser som gamla träd och naturliga håligheter blir allt mer sällsynta i städer, fyller fågelholkar denna funktion och möjliggör för fåglar att fortplanta sig. Genom att erbjuda fåglar lämpliga boplatser ökar mångfalden av fågelarter i staden. Olika fågelarter har olika krav på boendemiljöer, så genom att tillhandahålla olika typer av fågelholkar kan man locka till sig en bred variation av fåglar.'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.058483372003366,59.33409559004096]
+      },
+      properties: {
+        title: 'Kungsgatan 55',
+        imageSrc: 'https://openstudiostockholm.com/wp-content/uploads/2020/10/Bee_Urban_business-card.jpg',
+        developer: 'Beställare: AxFood AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Här kommer inom kort en beskrivning av projektet'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.063600664572675,59.33462436002188]
+      },
+      properties: {
+        title: 'Pollinering på Sveavägen 17',
+        imageSrc: 'https://openstudiostockholm.com/wp-content/uploads/2020/10/Bee_Urban_business-card.jpg',
+        developer: 'Beställare: Vasakronan AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Peräng: en peräng består av både vilda växter, anueller och perenner, och trädgårdsperenner. Växtval görs framförallt med hänsyn till växternas pollen-, och nektarinnehav men även för egenskaper som till exempel värdväxter till lokal fauna. En peräng anläggs med fördel i områden där krav på estetiska värden är höga och man önskar en prunkande och färggstark blomsterprakt relativt omgående. Växterna är också tåliga och klarar att växa i krävande miljöer. En peräng kan anläggas i en rad olika miljöer.'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.068835275065823,59.33305944713834]
+      },
+      properties: {
+        title: 'Ekosystemtjänster på Regeringsgatan 38 (NK-terassen)',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211112/q%3D50_h%3D450_of%3D1/v2?sig=ac207bde22bfe2634a18f3004f49ccf5fae3365b34c0967987796e8bd47dcfbc',
+        developer: 'Beställare: Huvudstaden AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'På NKs takterrass fick Bee Urban uppdraget att anlägga en urban oas för oss människor, men också för insekter och fåglar. Här finns ätliga växter som kryddor, nypon och hagtorn som både vi och exempelvis humlor, blomflugor, fjärilar och fåglar kan njuta av. Trädgården har en varierad flora med växter rika på pollen och nektar som blommar över hela säsongen till insekterna samt gott om bär till stadens fåglar. Bee Urban har även anlagt boplatser i form av små sandinstallationer till jord-, och sandlevande vildbin, bibatterier till tapetserar-, och murarbin och högar med dödved till skalbaggarna. Till sist har vi placerat en liten vattenkälla som förser insekter och fåglar med vatten under sommarsäsongen.'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.070836340001335,59.3345499743599]
+      },
+      properties: {
+        title: 'Pollinering på Norrlandsgatan 16',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211110/q%3D50_h%3D450_of%3D1/v2?sig=5553a490be48b77c21fc47324ab86ed7d12fd644e5f2020d3b9955050233a959',
+        developer: 'Beställare: Novier Real Estate AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Här kommer inom kort en beskrivning av projektet'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.071561134549228,59.33392572664215]
+      },
+      properties: {
+        title: 'Norrlandsgatan 10',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211107/q%3D50_h%3D450_of%3D1/v2?sig=03dacdacbc63fe61d1247c1bde9cfb6d7a437a0e8c9e770999e7d4cff0f952c7',
+        developer: 'Beställare: Huvudstaden AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Här kommer inom kort en beskrivning av projektet'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.0719508825608,59.333712991559224]
+      },
+      properties: {
+        title: 'Ekosystemtjänster på Smålandsgatan 20',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211119/q%3D50_h%3D450_of%3D1/v2?sig=f9f5ee9c3be37bf688aaeb4660143763fae35719e471ffd0e6bcd823e0704edd',
+        developer: 'Beställare: Huvudstaden AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Ängstak - På det här taket har vi anlagt en ängsmatta som vi har kompletterat med 700 pluggplantor. Växtval görs framförallt med hänsyn till växternas pollen-, och nektarinnehav men även för egenskaper som till exempel värdväxter till lokal fauna. Torräng är en typ av ängsvegetation som används på taklandskap och klarar av magra och torra förhållanden. Den har en högre artrikedom än sedum och försörjer en större variation av insekter med pollen och nektar under en längre säsong. Ängslandskapet kan förstärkas med blommande vårlök för att bli en bra foderkälla året runt. Vegetationsmattor på tak har en bromsande effekt på vattenavrinning och kan hålla dagvatten i sitt växtsubstrat. Dessutom bidrar växtmattor till att reglera byggnadens temperatur genom att minska värmeavdunstning och hålla byggnaden svalare under varma månader.'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.07317987784279,59.33422474595011]
+      },
+      properties: {
+        title: 'Biblioteksgatan 8',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211115/q%3D50_h%3D450_of%3D1/v2?sig=17fd0abe398b36d3b51ffaa71ab23f25adf1e320eaea199368466160e74a72fe',
+        developer: 'Beställare: Huvudstaden AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Här kommer inom kort en beskrivning av projektet'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.072434570241796,59.33510705143979]
+      },
+      properties: {
+        title: 'Biblioteksgatan 9',
+        imageSrc: 'https://openstudiostockholm.com/wp-content/uploads/2020/10/Bee_Urban_business-card.jpg',
+        developer: 'Beställare: Huvudstaden AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Här kommer inom kort en beskrivning av projektet'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [17.95529267761762,59.28521325666611]
+      },
+      properties: {
+        title: 'Pollinering vid Elisabeth Tamms gata 1',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211122/q%3D50_h%3D450_of%3D1/v2?sig=2ec8f9236ee95871d4fdfcdea2140ff727c6f4c6e5950490aafa717c80e0f43b',
+        developer: 'Beställare: OKQ8',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Här kommer inom kort en beskrivning av projektet'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.034957295289786,59.315647581834526]
+      },
+      properties: {
+        title: 'Ekosystemtjänster på Hornsbruksgatan 23-25 (Skofabriken)',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211125/q%3D50_h%3D450_of%3D1/v2?sig=5588421bb18fec03213a81979d812b40a61c62377573b8b021766b69f66d0cf0',
+        developer: 'Beställare: Novier Real Estate AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Gården i kvarteret Släggan, även kallat Skofabriken är en vacker innergård med stor potential. Gården behövde uppdateras både socialt och ekologiskt men även för att skapa högre attraktivitet för hyresgästerna. Genom att fokusera på urbana ekosystemtjänster som stärker biologiskt liv och mångfald kan vi även locka hit mer socialt liv. Här planterades pollen- och nektarrika växter till pollinatörer och frö och bär till fåglar. Växtligheten varvas med dödved och stora stenar för att göra det än mer gynnsamt för olika arter samtidigt som de är vackra designelement. En mulmholk för skalbaggar har placerats ut i den skuggigare planteringen. Vi har vatten som resurs på gården när regnet faller och genom att anlägga de stora planteringsytorna aningen nedsjunkna i marken kan vi både ta tillvara på vattnet och fördröja vattenavrinningen.'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.021433824105515,59.33147728761699]
+      },
+      properties: {
+        title: 'Biologisk Mångfald vid Rålambshovsleden 50',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211111/q%3D50_h%3D450_of%3D1/v2?sig=550431e7aacbc7be36711f8aa23c79513ebe39b91d7f3d35905c37845e8fb3ad',
+        developer: 'Beställare: Mariott',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'En välkomnande rabatt för insekter, fåglar och människor, med blomning över hela växtsäsongen i den västra delen av Courtyard by Marriot. Planteringens växter är en mångfald av pollen- och nektarrika örter, vårlökar och perenner som ger föda åt våra pollinatörer men även bärbuskar och fröställningar åt våra småfåglar.'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.06140448475722,59.34277222727155]
+      },
+      properties: {
+        title: 'Ekosystemtjänster på Tulegatan 15-19',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211121/q%3D50_h%3D450_of%3D1/v2?sig=497c3e782b7ef85365e3916a918b9c9d78f642e7d05a891620d61e2d89d55d35',
+        developer: 'Beställare: AxFast AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'På den här gården har Bee Urban anlagt en liten oas för oss stadsmänniskor, men även för alla de insekter och fåglar som vi delar miljön med. Här finns växter som ger pollen och nektar, ibland frö, frukt och bär eller smakrika blad - godsaker vi får dela med humlor, solitären, fjärilar, honungsbin och fåglar. För att gynna det vilda livet i staden har vi fyllt planteringarna med en variation av blommande växter så att blomningen sker utspritt över en lång säsong och därmed kan bidra med pollen och nektar en större del av året. Här har vi också tillfört vatten så att det ska finnas att dricka av och bada i och vi har byggt boplatser för de insekter som kan tänkas komma att trivas just här. Alla dessa insatser tillsammans gör att den här platsen spelar roll i det som kallas stadens gröna mosaik - en livsviktig väv av grönytor som gör att ekosystemen i staden kan fortsätta fungera.'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.08480002619575,59.34275092451057]
+      },
+      properties: {
+        title: 'Valhallavägen 17',
+        imageSrc: 'https://openstudiostockholm.com/wp-content/uploads/2020/10/Bee_Urban_business-card.jpg',
+        developer: 'Beställare: Vasakronan AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Här kommer inom kort en beskrivning av projektet'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.086763689421247,59.340192539463345]
+      },
+      properties: {
+        title: 'Östermalmsgatan 87',
+        imageSrc: 'https://openstudiostockholm.com/wp-content/uploads/2020/10/Bee_Urban_business-card.jpg',
+        developer: 'Beställare: Vasakronan AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Här kommer inom kort en beskrivning av projektet'
+    }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [18.096119426085693,59.33617814799257]
+      },
+      properties: {
+        title: 'Ekosystemtjänster på Karlavägen 100 (Garnisonen)',
+        imageSrc: 'https://drscdn.500px.org/photo/1076211101/q%3D50_h%3D450_of%3D1/v2?sig=41504933e8481c30879075967ee163500d8a0a30f03c345a5055e556fd94dd17',
+        developer: 'Beställare: Vasakronan AB',
+        executor: 'Utförare: Bee Urban',
+        miniimage: 'https://drscdn.500px.org/photo/1076213870/q%3D50_h%3D450_of%3D1/v2?sig=f6a6a9b06f3f9348f5038babe570d34999d74cea7c09b3c6380cfbce9db580ef',
+        description: 'Genom att kombinera död ved med nektar- och pollenrika växter, vattenhållande växter och fågelholkar kan man skapa ett litet ekosystem på en och samma plats - och blir samtidigt en fin pedagogisk installation för barn och vuxna i området. Genom att anpassa till förhållandena på platsen i antingen soliga eller skuggiga lägen ges olika arter möjlighet att finna föda och boplats. Peräng- en peräng består av både vilda växter, anueller och perenner, och trädgårdsperenner. Växtval görs framförallt med hänsyn till växternas pollen-, och nektarinnehav men även för egenskaper som till exempel värdväxter till lokal fauna. En peräng anläggs med fördel i områden där krav på estetiska värden är höga och man önskar en prunkande och färggstark blomsterprakt relativt omgående. Växterna är också tåliga och klarar att växa i krävande miljöer. En peräng kan anläggas i en rad olika miljöer. Bibatteri- träkonstruktioner med förborrade hål till hållevande solitära bin. Det enklaste utförandet är att ta en bit av en gammal stock, såga till i önskad form och borra hål i den. Hålen behöver vara minst 10 cm djupa. De solitära bina är olika stora, och därför krävs olika håldiameter för att bibatteriet ska gynna så många arter som möjligt. Generellt sett bör håldiametern vara 3-13 millimeter. Bin som kan tänkas flytta in är: Citronbin 3-6 mm, Ullbin 8-12 mm, Väggbin 6-10, Blomsovarbin 4-11 mm, Murarbin 5-12 mm, Tapetserarbi 8-13 mm, Pälsbin 8-12 mm Dödved- Genom att spara död ved, exempelvis stammar från fällda träd eller stora grenar efter beskärning, skapas boplatser och föda för insekter och mikroorganismer i kategorien ”nedbrytare” och ”pollinerare”. Men i förlängningen gynnas även flera fågelarter som i sin tur lever på dessa smådjur. Fågelholk - artspecifika fågelholkar som monteras i lämpliga biotoper på området. Lämpliga arter är stare som trivs i parkmiljö med närliggande skogsdungar samt småfågel som till exempel blåmes, talgoxe som klarar att häcka i miljöer med hög störningsgrad. Det är ändå viktigt att montera holkarna i så skyddad miljö som möjligt, minst 4 meter upp i träd eller dylikt. Starar lever gärna i kolonier och därför kan man montera många holkar i samma område. Talgoxe och Blåmes vaktar däremot sina revir så där behöver man montera holkarna med minst 25 meters mellanrum. Mulmholkar är viktiga men allt mer sällsynta livsmiljöer som skapas av gamla lövträd när de murknar inifrån. Dessa håligheter erbjuder en gynnsam miljö för fåglar, fladdermöss och insekter. Inuti håligheten bildas "mulm", en blandning av nedbrutet inre från trädet, spillning, döda djur, svampar och bakterier. Mulmholkar efterliknar denna naturliga miljö och kan användas av cirka 70 olika skalbaggsarter. Skalbaggar spelar en viktig roll som nedbrytare av organiskt material och är en del av ekosystemens funktion. Förutom skalbaggar trivs även andra arter som klokrypare, humlor, bålgetingar, harkrankar, fåglar och fladdermöss i mulmholkar. Bibädd - en bibädd skapas för att gynna jord- och sandlevande solitärbin. Markbyggande solitärbin är till exempel viktiga för att det ska bli rikligt med frukt och bär. Bibädden bör vara minst 2 x 2 meter och minst 50 cm djup. Det bästa läget är vindskyddade sydvända slänter. Sanden bör ha en variation i kornstorlek för att skapa en stabil uppbyggnad. En lämplig fraktion är sandlådesand 0-2 mm, 0-3 mm, 0-4 mm. Bibädden behöver vara fortsatt blottad för att fungera. Efter ett par år behöver växter som får fäste röjas bort. Småvatten, fontäner och dammar- vatten är viktigt för många i våra städer, exempelvis fåglar, insekter och människor. Vatten kan formges på många olika sätt beroende på platsens förutsättningar. Det viktiga är att göra vattnet tillgängligt att drickas eller bada i.'
+    }
+    }
+  ]
+};
+
+// add markers to map
+for (const feature of geojson.features) {
+  // create a HTML element for each feature
+  const el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add it to the map
+new mapboxgl.Marker(el)
+.setLngLat(feature.geometry.coordinates)
+.setPopup(
+new mapboxgl.Popup({ offset: 25 }) // add popups
+.setHTML(
+`<h3>${feature.properties.title}</h3>
+<p><img src="${feature.properties.miniimage}" style="width: 30px; height; auto; max-width: 100%"></p>
+<p><img src="${feature.properties.imageSrc}" style="width: 200px; height: auto; max-width: 100%"></p>
+<p style="text-align: left; color: #ea5097;"><b>${feature.properties.developer}</b></p>
+<p style="text-align: left; color: #ea5097;"><b>${feature.properties.executor}</b></p>
+<p>${feature.properties.description}</p>`
+)
+)
+.addTo(map);
+}
+</script>
+
+</body>
+</html>
